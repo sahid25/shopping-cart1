@@ -47,5 +47,23 @@ function handleProductChange(id, outputId, isIncrese, subtotalId) {
         productTotal = productNewCount * 59;
     }
         const totalValue = document.getElementById(outputId).innerText = productTotal;
-        // const totaL = document.getElementById(subtotalId).innerText = productTotal ;
+        calculateTotal();
+}
+
+function calculateTotal() {
+    const phoneCount = getProductValue('phoneInput');
+    const caseCount = getProductValue('caseInput');
+
+    const calculateTotal = phoneCount * 1219 + caseCount * 59;
+    document.getElementById('subTotal').innerText = calculateTotal;
+    const calculateTex = Math.round(calculateTotal * 0.1);
+    document.getElementById('texAmount').innerText = calculateTex;
+    const calculateBudget =  calculateTotal + calculateTex ;
+    document.getElementById('budgetTotal').innerText = calculateBudget;
+    console.log(calculateBudget);
+}
+function getProductValue(id) {
+    const productInput = document.getElementById(id);
+    const productCount = parseInt(productInput.value);
+    return productCount;
 }
